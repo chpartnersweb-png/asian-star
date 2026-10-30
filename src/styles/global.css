@@ -82,15 +82,23 @@ dialog:not([open]) { display: none; }
 .hero-visual, .hero-shade { position: absolute; inset: 0; z-index: -1; }
 .hero-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .hero-shade { background: linear-gradient(180deg, rgb(12 8 4 / 48%) 0%, rgb(12 8 4 / 5%) 23%, rgb(12 8 4 / 16%) 64%, rgb(12 8 4 / 55%) 100%); }
-.hero-content { position: absolute; top: 47%; left: 50%; width: min(1000px, 90%); transform: translate(-50%, -50%); text-align: center; }
+.hero-content { position: absolute; inset: 0; display: grid; place-items: center; padding: clamp(72px, 12dvh, 110px) 5%; text-align: center; }
+/* Include every line in the layout, then compensate for the large title's
+   visual weight above the smaller copy. Keep this separate from GSAP targets. */
+.hero-content-inner { display: flex; flex-direction: column; align-items: center; width: min(100%, 1000px); transform: translateY(clamp(8px, 2dvh, 22px)); }
 .hero-kicker { margin-bottom: 26px; font-size: 11px; letter-spacing: .36em; text-indent: .36em; color: var(--gold-light); }
-.hero h1 { position: relative; display: flex; justify-content: center; align-items: center; gap: 20px; font-family: var(--display); font-size: clamp(80px, 10.8vw, 165px); font-weight: 400; line-height: .9; letter-spacing: -.025em; text-shadow: 0 2px 35px rgb(20 10 3 / 20%); }
+.hero h1 { width: 100%; font-family: var(--display); font-size: clamp(80px, 10.8vw, 165px); font-weight: 400; line-height: .9; letter-spacing: -.025em; text-shadow: 0 2px 35px rgb(20 10 3 / 20%); }
+.hero-title-row { display: flex; justify-content: center; align-items: center; gap: 20px; white-space: nowrap; }
 .hero h1 .hero-star { font-size: .31em; color: var(--gold-light); margin-inline: .08em; }
-.hero h1 small { position: absolute; top: calc(100% + 23px); left: 0; width: 100%; font-family: var(--sans); font-size: 14px; font-weight: 400; letter-spacing: .4em; text-indent: .4em; }
-.hero-copy { margin-top: 80px; font-family: var(--serif); font-size: clamp(19px, 2.15vw, 29px); font-weight: 400; letter-spacing: .22em; }
-.hero-link { display: inline-flex; align-items: center; gap: 17px; margin-top: 34px; font-size: 11px; letter-spacing: .15em; }
-.hero-link > span { display: grid; place-items: center; width: 33px; height: 33px; border: 1px solid rgb(248 240 223 / 60%); border-radius: 50%; transition: background .2s, color .2s; }
-.hero-link:hover > span { background: var(--paper); color: var(--brown); }
+.hero h1 small { display: block; margin-top: 23px; font-family: var(--sans); font-size: 14px; font-weight: 400; line-height: 1.7; letter-spacing: .4em; text-indent: .4em; }
+.hero-copy { margin-top: 32px; font-family: var(--serif); font-size: clamp(19px, 2.15vw, 29px); font-weight: 400; letter-spacing: .22em; text-indent: .22em; }
+/* The final Japanese full stop leaves empty space on the right of its glyph. */
+.hero-copy > span { display: inline-block; transform: translateX(.25em); }
+.hero-link { position: relative; display: inline-flex; align-items: center; min-height: 33px; margin-top: 28px; font-size: 11px; }
+.hero-link-label { letter-spacing: .15em; text-indent: .15em; }
+/* Center the label on the same axis as the other lines; the arrow is ancillary. */
+.hero-link-icon { position: absolute; top: 50%; left: calc(100% + 17px); display: grid; place-items: center; width: 33px; height: 33px; border: 1px solid rgb(248 240 223 / 60%); border-radius: 50%; transform: translateY(-50%); transition: background .2s, color .2s; }
+.hero-link:hover .hero-link-icon { background: var(--paper); color: var(--brown); }
 .hero-bottom { position: absolute; bottom: 32px; right: 3.4%; left: 3.4%; display: flex; align-items: end; justify-content: space-between; gap: 20px; font-size: 10px; letter-spacing: .07em; }
 .hero-bottom p:first-child span { margin-inline: 12px; color: var(--gold); }
 .hero-bottom .hero-image-note { font-size: 9px; color: #d4c5b2; }
@@ -296,7 +304,8 @@ dialog:not([open]) { display: none; }
   .desktop-nav .header-map { display: none; }
   .wordmark strong { font-size: 24px; }
   .wordmark > svg { width: 28px; }
-  .hero h1 { font-size: clamp(75px, 11.5vw, 120px); gap: 14px; }
+  .hero h1 { font-size: clamp(75px, 11.5vw, 120px); }
+  .hero-title-row { gap: 14px; }
   .visit-strip { gap: 22px; }
   .visit-strip > a { display: none; }
   .signature-grid { gap: 32px 24px; }
@@ -342,11 +351,11 @@ dialog:not([open]) { display: none; }
   .desktop-nav { display: none; }
   .mobile-toggle { display: flex; align-items: center; gap: 9px; min-height: 42px; padding: 0; background: transparent; }
   .mobile-toggle > span { font-size: 8px; letter-spacing: .13em; }
-  .hero-content { top: 45%; }
-  .hero-kicker { font-size: 9px; letter-spacing: .24em; }
-  .hero h1 { font-size: 11.7vw; gap: 10px; }
-  .hero h1 small { top: calc(100% + 20px); font-size: 12px; letter-spacing: .3em; }
-  .hero-copy { margin-top: 74px; font-size: 21px; letter-spacing: .12em; }
+  .hero-kicker { font-size: 9px; letter-spacing: .24em; text-indent: .24em; }
+  .hero h1 { font-size: 11.7vw; }
+  .hero-title-row { gap: 10px; }
+  .hero h1 small { margin-top: 20px; font-size: 12px; letter-spacing: .3em; text-indent: .3em; }
+  .hero-copy { margin-top: 28px; font-size: 21px; letter-spacing: .12em; text-indent: .12em; }
   .hero-bottom { bottom: 24px; left: 6%; right: 6%; }
   .hero-bottom p:first-child { font-size: 8px; }
   .hero-bottom p:first-child span { margin-inline: 5px; }
@@ -472,11 +481,13 @@ dialog:not([open]) { display: none; }
   .mobile-only { display: initial; }
   .hero-visual img { object-position: center; }
   .hero-shade { background: linear-gradient(180deg, rgb(18 10 4 / 40%), rgb(18 10 4 / 6%) 38%, rgb(18 10 4 / 7%) 70%, rgb(18 10 4 / 60%)); }
-  .hero-content { top: 35%; width: 92%; }
-  .hero h1 { font-size: 12.1vw; gap: 7px; }
+  .hero-content { padding-inline: 4%; }
+  .hero-content-inner { transform: translateY(clamp(6px, 1.5dvh, 14px)); }
+  .hero h1 { font-size: 12.1vw; }
+  .hero-title-row { gap: 7px; }
   .hero-kicker { font-size: 8px; margin-bottom: 24px; }
   .hero h1 small { font-size: 11px; }
-  .hero-copy { font-size: 19px; margin-top: 68px; }
+  .hero-copy { font-size: 19px; margin-top: 26px; }
   .hero-link { margin-top: 24px; font-size: 10px; }
   .hero-bottom p:first-child { max-width: 135px; font-size: 7px; }
   .hero-bottom .hero-image-note { max-width: 150px; text-align: right; }
@@ -525,13 +536,15 @@ dialog:not([open]) { display: none; }
 
 /* Keep the hero copy inside short screens, including phone landscape. */
 @media (max-height: 600px) {
-  .hero-content { top: 52%; }
+  .hero-content { padding-block: 64px 42px; }
+  .hero-content-inner { transform: none; }
   .hero-kicker { margin-bottom: 12px; font-size: 8px; }
-  .hero h1 { font-size: clamp(36px, 13vh, 78px); gap: 10px; }
-  .hero h1 small { top: calc(100% + 12px); font-size: 10px; }
-  .hero-copy { margin-top: 42px; font-size: 16px; }
-  .hero-link { margin-top: 12px; font-size: 9px; }
-  .hero-link > span { width: 26px; height: 26px; }
+  .hero h1 { font-size: clamp(36px, 13vh, 78px); }
+  .hero-title-row { gap: 10px; }
+  .hero h1 small { margin-top: 12px; font-size: 10px; }
+  .hero-copy { margin-top: 18px; font-size: 16px; }
+  .hero-link { min-height: 26px; margin-top: 12px; font-size: 9px; }
+  .hero-link-icon { width: 26px; height: 26px; }
   .hero-bottom { bottom: 12px; }
   .scroll-cue { display: none; }
 }

@@ -15,10 +15,12 @@ const [desktop, mobile] = await Promise.all([
   </picture>
   <div class="hero-shade"></div>
   <div class="hero-content">
-    <p class="hero-kicker" data-hero-copy>THAI & INDIAN CUISINE</p>
-    <h1 id="hero-title" data-hero-copy><span>ASIAN</span><span class="hero-star" aria-hidden="true">✧</span><span>STAR</span><small>アジアンスター</small></h1>
-    <p class="hero-copy" data-hero-copy>香りに誘われて、中野。</p>
-    <a class="hero-link" href="#signature" data-hero-copy>料理をめぐる<span><Icon name="arrow" size={18} /></span></a>
+    <div class="hero-content-inner">
+      <p class="hero-kicker" data-hero-copy>THAI & INDIAN CUISINE</p>
+      <h1 id="hero-title" data-hero-copy><span class="hero-title-row"><span>ASIAN</span><span class="hero-star" aria-hidden="true">✧</span><span>STAR</span></span><small>アジアンスター</small></h1>
+      <p class="hero-copy" data-hero-copy><span>香りに誘われて、中野。</span></p>
+      <a class="hero-link" href="#signature" data-hero-copy><span class="hero-link-label">料理をめぐる</span><span class="hero-link-icon"><Icon name="arrow" size={18} /></span></a>
+    </div>
   </div>
   <div class="hero-bottom"><p>NAKANO, TOKYO <span>—</span> 中野駅 徒歩1分</p><a href="#signature" class="scroll-cue"><span>SCROLL TO TASTE</span><i aria-hidden="true"></i></a><p class="hero-image-note">メインビジュアルはイメージです</p></div>
 </section>
