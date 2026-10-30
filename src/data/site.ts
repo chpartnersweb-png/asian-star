@@ -1,11 +1,14 @@
+import { absoluteUrl, siteConfig } from './site-config.mjs';
+
 const address = '東京都中野区中野5-59-6 ハタノビル2F';
 const mapQuery = encodeURIComponent(`アジアンスター ${address}`);
 
 export const site = {
   name: 'アジアンスター',
   englishName: 'ASIAN STAR',
-  title: 'アジアンスター｜中野駅徒歩1分のタイ料理・インド料理',
-  description: '中野駅から徒歩1分。アジアンスターで、ガパオライスやパッタイ、カオマンガイ、カレーなど、タイ料理とインド料理を。毎日11:00〜23:00、24席。東京都中野区中野5-59-6 ハタノビル2F。',
+  url: siteConfig.url,
+  title: 'アジアンスター｜中野駅徒歩1分のタイ料理・インド料理店',
+  description: '中野駅から徒歩1分のタイ料理・インド料理店「アジアンスター」。ガパオライス、パッタイ、カオマンガイ、カレーなどを楽しめます。毎日11:00〜23:00・年中無休、24席。東京都中野区中野5-59-6 ハタノビル2F。',
   phone: '03-5942-4749',
   phoneHref: 'tel:0359424749',
   postalCode: '164-0001',
@@ -27,10 +30,14 @@ export const navigation = [
 ];
 
 export const restaurantSchema = {
-  '@context': 'https://schema.org',
   '@type': 'Restaurant',
+  '@id': absoluteUrl('/#restaurant'),
   name: site.name,
   alternateName: 'Asian star',
+  url: site.url,
+  description: site.description,
+  mainEntityOfPage: { '@id': absoluteUrl('/#webpage') },
+  hasMenu: absoluteUrl('/#menu'),
   telephone: '+81-3-5942-4749',
   servesCuisine: ['Thai', 'Indian'],
   address: {
@@ -43,7 +50,7 @@ export const restaurantSchema = {
   },
   openingHoursSpecification: [{
     '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day) => `https://schema.org/${day}`),
     opens: '11:00',
     closes: '23:00',
   }],

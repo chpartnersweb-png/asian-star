@@ -10,7 +10,10 @@
 | --- | --- |
 | 店舗情報・電話・地図・SEO説明文 | `src/data/site.ts` |
 | 料理42枚の名前・価格・カテゴリ、メニュー表の一覧 | `src/data/menu.ts` |
-| ページ構成・head内のメタ情報 | `src/pages/index.astro` |
+| ページ構成 | `src/pages/index.astro` |
+| 公開URL・言語 | `src/data/site-config.mjs` |
+| SEOタグ・OGP・共有画像 | `src/components/Seo.astro` |
+| 構造化データ | `src/data/seo.ts`、`src/data/site.ts` |
 | ヒーローと生成画像の切り替え | `src/components/Hero.astro` |
 | 人気5品・紹介文 | `src/components/Signature.astro` |
 | タイ料理・インド料理の紹介 | `src/components/Cuisine.astro` |
@@ -71,8 +74,8 @@ npm exec astro dev logs
 npm exec astro dev stop
 ```
 
-## 公開URLが決まったら
+## SEO・公開URL
 
-`astro.config.mjs` の `site` に正式なURLを設定すると、ページのcanonical・og:urlが出力される。現段階では不明な公開URLを仮定していない。サイトマップ・公開・Search Consoleへの登録は今回の実装範囲に含めていない。
+正式URLは `https://asian-star.pages.dev/`。`src/data/site-config.mjs` を共通の設定元として、canonical・OGP・構造化データ・robots.txt・サイトマップに使用している。詳細と反映後のSearch Console操作は `docs/SEO.md` を参照。SEO変更のデプロイ・インデックス登録は実行していない。
 
 外部フォントはGoogle Fonts、地図はGoogle Mapsの埋め込みを使用している。

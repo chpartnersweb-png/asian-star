@@ -1,0 +1,49 @@
+---
+import { getImage } from 'astro:assets';
+import { site } from '../data/site';
+import { absoluteUrl, siteConfig } from '../data/site-config.mjs';
+import { structuredData } from '../data/seo';
+import foodPhoto from '../assets/line_oa_chat_261027_152936.jpg';
+
+// This photograph also appears in the Indian cuisine section. Generated hero
+// artwork is intentionally not used as a documentary image in structured data.
+const socialImage = await getImage({
+  src: foodPhoto,
+  width: foodPhoto.width,
+  format: 'jpg',
+  quality: 90,
+});
+const image = {
+  url: absoluteUrl(socialImage.src),
+  width: foodPhoto.width,
+  height: foodPhoto.height,
+  alt: 'アジアンスターのカレー・ナン・ライスのセット',
+};
+const jsonLd = JSON.stringify(structuredData(image)).replace(/</g, '\\u003c');
+---
+<title>{site.title}</title>
+<meta name="description" content={site.description} />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href={site.url} />
+<link rel="sitemap" href={absoluteUrl('/sitemap.xml')} type="application/xml" />
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content={siteConfig.locale} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={site.title} />
+<meta property="og:description" content={site.description} />
+<meta property="og:url" content={site.url} />
+<meta property="og:image" content={image.url} />
+<meta property="og:image:secure_url" content={image.url} />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content={String(image.width)} />
+<meta property="og:image:height" content={String(image.height)} />
+<meta property="og:image:alt" content={image.alt} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={site.title} />
+<meta name="twitter:description" content={site.description} />
+<meta name="twitter:image" content={image.url} />
+<meta name="twitter:image:alt" content={image.alt} />
+
+<script type="application/ld+json" set:html={jsonLd} />
