@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import { photo, popular } from '../data/menu';
+import SectionHeading from './SectionHeading.astro';
+import Icon from './Icon.astro';
+const menuPhoto = photo('153100');
+---
+<section class="signature section-space" id="signature" aria-label="人気の5品">
+  <div class="container">
+    <div class="signature-intro" data-reveal>
+      <p class="eyebrow">A LITTLE THAILAND. A LITTLE INDIA.</p>
+      <p class="intro-line">ひと皿で、<br class="mobile-only" />旅する気分。</p>
+      <p class="intro-text">ハーブが香るタイ料理も、<br class="mobile-only" />カレーとナンを楽しむインド料理も。<br />中野の街で、今日は気の向くままに。</p>
+      <span class="intro-star" aria-hidden="true">✧</span>
+    </div>
+    <div class="heading-with-note">
+      <SectionHeading english="FIVE SIGNATURE DISHES" title="まずは、このひと皿から。" number="01" />
+      <p class="section-note">アジアンスターの人気の5皿。<br />あなたの「食べたい」を見つけて。</p>
+    </div>
+    <div class="signature-grid">
+      {popular.slice(0, 2).map((item) => <article class:list={['signature-item', 'signature-item--small', `signature-item--${item.number}`]} data-reveal>
+        <div class="signature-item-top"><span class="dish-number">{item.number}</span><span class="dish-english">{item.english}</span></div>
+        <div class="signature-menu-photo"><svg viewBox={item.crop} role="img" aria-label={`${item.name}のメニュー写真`}><image href={menuPhoto.src} width="750" height="1000" /></svg></div>
+        <h3>{item.name}</h3><p>{item.description}</p>
+        <div class="dish-bottom"><span class="dish-price"><small>¥</small>{item.price}</span><span>単品</span></div>
+      </article>)}
+      <article class="signature-item signature-item--03" data-reveal>
+        <div class="signature-item-top"><span class="dish-number">03</span><span class="dish-english">KHAO MAN GAI</span></div>
+        <div class="signature-full-photo"><Image src={photo('153022')} alt="蒸し鶏とごはんを盛り付けたカオマンガイ" width={480} format="webp" loading="lazy" /></div>
+        <h3>カオマンガイ</h3><p>蒸し鶏とチキンスープで炊いたごはん。<br />ジンジャーソースを添えて。</p>
+        <div class="dish-bottom"><span class="dish-price"><small>¥</small>950</span><span>単品</span></div>
+      </article>
+      {popular.slice(2).map((item) => <article class:list={['signature-item', 'signature-item--small', `signature-item--${item.number}`]} data-reveal>
+        <div class="signature-item-top"><span class="dish-number">{item.number}</span><span class="dish-english">{item.english}</span></div>
+        <div class="signature-menu-photo"><svg viewBox={item.crop} role="img" aria-label={`${item.name}のメニュー写真`}><image href={menuPhoto.src} width="750" height="1000" /></svg></div>
+        <h3>{item.name}</h3><p>{item.description}</p>
+        <div class="dish-bottom"><span class="dish-price"><small>¥</small>{item.price}</span><span>単品</span></div>
+      </article>)}
+      <article class="signature-item signature-item--05" data-reveal>
+        <div class="signature-item-top"><span class="dish-number">05</span><span class="dish-english">INDIAN CURRY</span></div>
+        <div class="signature-full-photo"><Image src={photo('152947')} alt="赤いカレーにクリームをあしらったバターチキンカレー" width={540} format="webp" loading="lazy" /></div>
+        <h3>カレー</h3><p>バターチキン、チキン、ほうれん草。<br />気分に合わせて選ぶ、インドの味。</p>
+        <div class="dish-bottom"><span class="dish-price"><small>¥</small>900</span><span>バターチキンカレー単品</span></div>
+      </article>
+    </div>
+    <div class="signature-foot"><p class="fine-print">価格は掲載メニュー表の単品表記です。セットとは内容・価格が異なります。</p><a class="text-link" href="#menu">もっとメニューを見る<Icon name="arrow" size={20} /></a></div>
+  </div>
+</section>

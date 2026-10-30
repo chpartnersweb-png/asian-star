@@ -1,0 +1,25 @@
+---
+import { getImage } from 'astro:assets';
+import heroDesktop from '../assets/generated/asian-star-hero-desktop-v1.png';
+import heroMobile from '../assets/generated/asian-star-hero-mobile-v1.png';
+import Icon from './Icon.astro';
+const [desktop, mobile] = await Promise.all([
+  getImage({ src: heroDesktop, width: heroDesktop.width, format: 'webp', quality: 88 }),
+  getImage({ src: heroMobile, width: heroMobile.width, format: 'webp', quality: 86 }),
+]);
+---
+<section class="hero" aria-labelledby="hero-title">
+  <picture class="hero-visual">
+    <source media="(max-width: 640px)" srcset={mobile.src} width={heroMobile.width} height={heroMobile.height} />
+    <img src={desktop.src} width={heroDesktop.width} height={heroDesktop.height} alt="" fetchpriority="high" decoding="async" />
+  </picture>
+  <div class="hero-shade"></div>
+  <div class="hero-content">
+    <p class="hero-kicker" data-hero-copy>THAI & INDIAN CUISINE</p>
+    <h1 id="hero-title" data-hero-copy><span>ASIAN</span><span class="hero-star" aria-hidden="true">✧</span><span>STAR</span><small>アジアンスター</small></h1>
+    <p class="hero-copy" data-hero-copy>香りに誘われて、中野。</p>
+    <a class="hero-link" href="#signature" data-hero-copy>料理をめぐる<span><Icon name="arrow" size={18} /></span></a>
+  </div>
+  <div class="hero-bottom"><p>NAKANO, TOKYO <span>—</span> 中野駅 徒歩1分</p><a href="#signature" class="scroll-cue"><span>SCROLL TO TASTE</span><i aria-hidden="true"></i></a><p class="hero-image-note">メインビジュアルはイメージです</p></div>
+</section>
+<div class="visit-strip" aria-label="営業案内"><p><Icon name="pin" size={16} />中野駅から徒歩<span>1</span>分</p><span class="strip-star" aria-hidden="true">✧</span><p><span>11:00–23:00</span></p><span class="strip-star" aria-hidden="true">✧</span><p>年中無休</p><a href="#access">店舗・アクセス<Icon name="arrow" size={16} /></a></div>

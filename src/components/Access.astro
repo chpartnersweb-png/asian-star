@@ -1,0 +1,20 @@
+---
+import { site } from '../data/site';
+import SectionHeading from './SectionHeading.astro';
+import Icon from './Icon.astro';
+---
+<section class="access-section section-space" id="access" aria-label="店舗情報とアクセス"><div class="container">
+  <SectionHeading english="COME & FIND US" title="中野で、お待ちしています。" number="05" />
+  <div class="access-layout">
+    <div class="store-info" data-reveal><p class="store-name">アジアンスター<span>ASIAN STAR</span></p><dl>
+      <div><dt>住所</dt><dd>〒{site.postalCode}<br />東京都中野区中野5-59-6<br />ハタノビル2F</dd></div>
+      <div><dt>アクセス</dt><dd>{site.access}</dd></div>
+      <div><dt>営業時間</dt><dd><span class="hours-value">{site.hours}</span><small>平日・土日祝 共通</small></dd></div>
+      <div><dt>定休日</dt><dd>{site.closed}（年中無休）</dd></div>
+      <div><dt>席数</dt><dd>{site.seats}</dd></div>
+      <div><dt>お支払い</dt><dd>{site.payment}</dd></div>
+      <div><dt>電話</dt><dd><a class="store-phone" href={site.phoneHref}>{site.phone}</a></dd></div>
+    </dl></div>
+    <div class="access-map" data-reveal><div class="map-frame"><iframe src={site.mapEmbed} title="アジアンスター：東京都中野区中野5-59-6 ハタノビル2Fの地図" width="640" height="500" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe><span class="map-corner" aria-hidden="true">NAKANO<br />TOKYO</span></div><a class="button button--gold" href={site.mapHref} target="_blank" rel="noopener noreferrer"><Icon name="pin" size={18} />Google マップで開く<Icon name="arrow" /></a><a class="map-phone" href={site.phoneHref}><Icon name="phone" size={16} />お電話でのお問い合わせ<span>{site.phone}</span></a></div>
+  </div>
+</div></section>

@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+import { site, navigation } from '../data/site';
+---
+<header class="site-header" id="site-header">
+  <a class="wordmark" href="#top" aria-label="アジアンスター トップへ">
+    <Icon name="star" size={34} />
+    <span><strong>ASIAN STAR</strong><small>THAI & INDIAN RESTAURANT</small></span>
+  </a>
+  <nav class="desktop-nav" aria-label="メインナビゲーション">
+    {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+    <a class="header-map" href={site.mapHref} target="_blank" rel="noopener noreferrer"><Icon name="pin" size={17} />地図を開く<Icon name="external" size={13} /></a>
+  </nav>
+  <button class="mobile-toggle" type="button" aria-label="メニューを開く" aria-controls="navigation-dialog" aria-expanded="false" data-nav-open><span>MENU</span><Icon name="menu" size={25} /></button>
+</header>
+
+<dialog class="navigation-dialog" id="navigation-dialog" aria-labelledby="navigation-title">
+  <div class="navigation-top"><span id="navigation-title" class="eyebrow">ASIAN STAR</span><button class="icon-button" type="button" aria-label="メニューを閉じる" data-nav-close><Icon name="close" size={26} /></button></div>
+  <nav aria-label="モバイルナビゲーション">
+    {navigation.map((item, index) => <a href={item.href}><span class="nav-index">0{index + 1}</span><span>{item.label}<small>{item.english}</small></span><Icon name="arrow" /></a>)}
+  </nav>
+  <div class="navigation-info"><p>中野駅から徒歩1分</p><p>11:00–23:00 ／ 年中無休</p><a href={site.phoneHref}>{site.phone}</a></div>
+  <a class="button button--gold" href={site.mapHref} target="_blank" rel="noopener noreferrer">地図を開く<Icon name="arrow" /></a>
+</dialog>

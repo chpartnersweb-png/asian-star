@@ -1,0 +1,6 @@
+---
+import { site, navigation } from '../data/site';
+import Icon from './Icon.astro';
+---
+<footer class="site-footer"><div class="container"><div class="footer-top"><a href="#top" class="footer-wordmark">ASIAN<span aria-hidden="true">✧</span>STAR<small>アジアンスター</small></a><div class="footer-contact"><p>THAI & INDIAN RESTAURANT</p><p>中野駅 徒歩1分 ／ 毎日 11:00–23:00</p><a href={site.phoneHref}>{site.phone}</a></div></div><div class="footer-bottom"><small>© {new Date().getFullYear()} Asian Star</small><nav aria-label="フッターナビゲーション">{navigation.map((item) => <a href={item.href}>{item.label}</a>)}</nav><a class="back-to-top" href="#top">BACK TO TOP ↑</a></div></div></footer>
+<nav class="mobile-dock" aria-label="来店へのショートカット"><a href="#menu"><Icon name="menu" size={20} /><span>メニュー</span></a><a href={site.mapHref} target="_blank" rel="noopener noreferrer"><Icon name="pin" size={20} /><span>地図を開く</span></a><a href={site.phoneHref}><Icon name="phone" size={19} /><span>電話する</span></a></nav>

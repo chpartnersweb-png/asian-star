@@ -1,0 +1,9 @@
+---
+import { Image } from 'astro:assets';
+import { photo } from '../data/menu';
+import Icon from './Icon.astro';
+---
+<section class="about-section section-space" aria-labelledby="about-title"><div class="container about-layout">
+  <div class="about-pictures" data-reveal><figure><Image src={photo('153039')} alt="春雨と海鮮を彩りよく盛り付けたヤムウンセン" width={500} format="webp" loading="lazy" /></figure><figure><Image src={photo('152953')} alt="レモンを添えたタンドリーチキン" width={460} format="webp" loading="lazy" /></figure><span aria-hidden="true">✧</span></div>
+  <div class="about-copy" data-reveal><p class="eyebrow"><span class="section-number">04</span>YOUR TABLE IN NAKANO</p><h2 id="about-title">今日の気分で、<br />席につく。</h2><p>ひとりで、気軽にひと皿。<br />家族と、それぞれの好きを囲んで。<br />仕事の合間にも、帰り道の一杯にも。</p><p>タイとインドの料理を楽しめる、24席。<br />中野駅から徒歩1分の<br />アジアンスターへ、どうぞ。</p><a class="text-link" href="#access">お店へのアクセス<Icon name="arrow" /></a></div>
+</div></section>

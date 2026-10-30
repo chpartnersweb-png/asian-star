@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import { menuGroups, menuSheets } from '../data/menu';
+import SectionHeading from './SectionHeading.astro';
+import Icon from './Icon.astro';
+---
+<section class="menu-section section-space" id="menu" aria-label="お料理とメニュー表"><div class="container">
+  <div class="heading-with-note"><SectionHeading english="EXPLORE THE MENU" title="食べたい気分で、選ぶ。" number="03" /><p class="section-note">ひとりのランチも、みんなの食卓も。<br />タイとインドの、おいしい選択肢。</p></div>
+  <div class="menu-categories">
+    {menuGroups.map((group, index) => <details class="menu-category" id={group.id} open={index === 0}>
+      <summary><span class="category-number">0{index + 1}</span><span class="category-name"><span>{group.english}</span><strong>{group.name}</strong></span><span class="category-count">{group.dishes.length}<small>PHOTOS</small></span><span class="category-plus"><Icon name="plus" size={22} /></span></summary>
+      <div class="dish-gallery">{group.dishes.map((dish) => <figure class="gallery-dish">
+        <div class="gallery-image"><Image src={dish.image} alt={dish.name} width={Math.min(440, dish.image.width)} format="webp" loading="lazy" /></div>
+        <figcaption><div class="gallery-name"><h3>{dish.name}</h3>{dish.price && <span class="gallery-price">¥{dish.price}</span>}</div>{dish.note && <p>{dish.note}</p>}</figcaption>
+      </figure>)}</div>
+    </details>)}
+  </div>
+  <p class="menu-price-note">価格は掲載メニュー表の表記です。単品・ランチ・ディナーセットで内容や価格が異なります。最新の内容・価格は店舗へお問い合わせください。</p>
+  <div class="menu-book" id="menu-book">
+    <div class="menu-book-heading" data-reveal><div><p class="eyebrow">TAKE A CLOSER LOOK</p><h3>メニュー表を、じっくり。</h3></div><p>ランチから、一品料理まで。<br />気になるメニュー表を開いてご覧ください。</p></div>
+    <div class="sheet-list">{menuSheets.map((sheet, index) => <a class="sheet-link" href={sheet.image.src} target="_blank" rel="noopener noreferrer" data-menu-sheet data-menu-index={index} data-menu-title={sheet.label} data-menu-src={sheet.image.src} data-menu-width={sheet.image.width} data-menu-height={sheet.image.height} data-menu-rotated={String(sheet.rotated)} aria-label={`${sheet.label}のメニュー表を開く`}>
+      <span class="sheet-number">{String(index + 1).padStart(2, '0')}</span><span class="sheet-label"><span>{sheet.english}</span><strong>{sheet.label}</strong></span><span class="sheet-open"><Icon name="plus" size={19} /></span>
+    </a>)}</div>
+    <p class="fine-print">営業時間は毎日11:00〜23:00です。メニュー画像内の時間表記と異なる場合があります。</p>
+  </div>
+</div></section>
+
+<dialog id="menu-viewer" class="menu-viewer" aria-labelledby="menu-viewer-title">
+  <div class="viewer-toolbar"><div><p class="eyebrow">ASIAN STAR / MENU</p><h2 id="menu-viewer-title">メニュー表</h2></div><div class="viewer-actions"><button type="button" class="viewer-zoom" data-viewer-zoom aria-pressed="false">拡大する</button><button type="button" class="icon-button" data-viewer-close aria-label="メニュー表を閉じる"><Icon name="close" size={26} /></button></div></div>
+  <div class="viewer-scroll" data-lenis-prevent tabindex="0" role="region" aria-label="メニュー画像。スクロールして閲覧できます"><div class="viewer-paper" data-viewer-paper><img data-viewer-image src={menuSheets[0].image.src} width={menuSheets[0].image.width} height={menuSheets[0].image.height} alt="ランチのメニュー表" loading="lazy" /></div></div>
+  <div class="viewer-bottom"><button type="button" data-viewer-prev aria-label="前のメニュー表へ">← 前へ</button><span data-viewer-counter aria-live="polite"></span><a data-viewer-original href={menuSheets[0].image.src} target="_blank" rel="noopener noreferrer">元の画像を開く<Icon name="external" size={13} /></a><button type="button" data-viewer-next aria-label="次のメニュー表へ">次へ →</button></div>
+  <p class="viewer-note">営業時間は11:00〜23:00です。掲載内容・価格は店舗へお問い合わせください。</p>
+</dialog>

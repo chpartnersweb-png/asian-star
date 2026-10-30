@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import { photo } from '../data/menu';
+import Icon from './Icon.astro';
+---
+<section class="cuisines" id="cuisine" aria-label="タイ料理とインド料理">
+  <div class="thai-chapter section-space"><div class="container">
+    <div class="chapter-top" data-reveal><p class="eyebrow"><span class="section-number">02</span>TWO COUNTRIES, ONE TABLE</p><span>THAILAND & INDIA</span></div>
+    <div class="thai-layout">
+      <div class="thai-copy" data-reveal><p class="chapter-word">Thai<span>タイ料理</span></p><h2>香り、彩り、<br />ひと口のときめき。</h2><p>ハーブが香るカレー。<br />つるりとした米麺に、彩り豊かな前菜。<br />タイのいろいろを、ひとつの食卓で。</p><a class="text-link" href="#rice-noodles">タイ料理を選ぶ<Icon name="arrow" /></a></div>
+      <div class="thai-collage">
+        <figure class="thai-main" data-reveal data-parallax><Image src={photo('153010')} alt="鶏肉と野菜が入ったタイのグリーンカレー" width={352} format="webp" loading="lazy" /><figcaption><span>01</span>GREEN CURRY</figcaption></figure>
+        <figure class="thai-side" data-reveal><Image src={photo('153042')} alt="野菜と海老を包んだ生春巻き" width={480} format="webp" loading="lazy" /><figcaption><span>02</span>FRESH SPRING ROLLS</figcaption></figure>
+        <figure class="thai-bottom" data-reveal><Image src={photo('153041')} alt="青パパイヤと野菜のサラダ、ソムタム" width={480} format="webp" loading="lazy" /><figcaption><span>03</span>SOM TAM</figcaption></figure>
+        <span class="collage-star" aria-hidden="true">✧</span>
+      </div>
+    </div>
+  </div></div>
+  <div class="india-chapter section-space"><div class="container">
+    <div class="india-heading" data-reveal><p class="chapter-word">Indian<span>インド料理</span></p><h2>カレーの奥行き。<br />ナンと味わう、満ち足りた時間。</h2></div>
+    <div class="india-layout">
+      <figure class="india-set" data-reveal><Image src={photo('152936')} alt="ナン、カレー、ライス、サラダなどが並ぶインド料理のセット" width={750} format="webp" loading="lazy" /><figcaption>CURRY, NAAN & A LITTLE MORE.</figcaption></figure>
+      <div class="india-detail" data-reveal><p class="eyebrow">FIND YOUR FAVORITE CURRY</p><h3>今日は、どのカレーにする？</h3><p>チキンにマトン、ほうれん草。<br />お気に入りのカレーに、ナンを合わせて。<br />組み合わせを選ぶ時間も、楽しみのひとつ。</p><a class="text-link" href="#indian-curry">カレーとナンを見る<Icon name="arrow" /></a><div class="naan-note"><Image src={photo('152951')} alt="チーズが伸びるチーズナン" width={280} format="webp" loading="lazy" /><p><span>CHEESE NAAN</span>チーズナンも、ご一緒に。</p></div></div>
+    </div>
+  </div></div>
+</section>
